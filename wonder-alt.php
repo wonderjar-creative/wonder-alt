@@ -16,7 +16,7 @@
  * Plugin Name:       Wonder Alt
  * Plugin URI:        https://wonderjarcreative.com
  * Description:       Automatically add alt text to images.
- * Version:           1.4.1
+ * Version:           1.4.2
  * Author:            Matthew Ediger
  * Author URI:        https://wonderjarcreative.com/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if (! defined('WPINC')) {
  * Start at version 0.1.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('WONDER_ALT_VERSION', '1.4.1');
+define('WONDER_ALT_VERSION', '1.4.2');
 
 /**
  * The code that runs during plugin activation.
