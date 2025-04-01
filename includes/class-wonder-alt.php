@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The file that defines the core plugin class
  *
@@ -6,12 +7,9 @@
  * public-facing side of the site and the admin area.
  *
  * @link https://wonderjarcreative.com
- * 
- * @since 0.1.0
- *
+ * @since 1.0.0
  * @package Wonder_Alt
- * 
- * @subpackage Wonder_Alt/includes
+ * @subpackage Wonder_Alt\Includes
  */
 
 /**
@@ -61,7 +59,7 @@ class Wonder_Alt {
 	 * the public-facing side of the site.
 	 */
 	public function __construct() {
-		if ( defined( 'WONDER_ALT_VERSION' ) ) {
+		if (defined('WONDER_ALT_VERSION')) {
 			$this->version = WONDER_ALT_VERSION;
 		} else {
 			$this->version = '0.1.0';
@@ -94,24 +92,24 @@ class Wonder_Alt {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wonder-alt-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-wonder-alt-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wonder-alt-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-wonder-alt-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wonder-alt-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-wonder-alt-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wonder-alt-public.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-wonder-alt-public.php';
 
 		$this->loader = new Wonder_Alt_Loader();
 	}
@@ -127,7 +125,7 @@ class Wonder_Alt {
 	private function set_locale() {
 		$plugin_i18n = new Wonder_Alt_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 
 	/**
@@ -137,15 +135,15 @@ class Wonder_Alt {
 	 * @access private
 	 */
 	private function define_admin_hooks() {
-		$plugin_admin = new Wonder_Alt_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Wonder_Alt_Admin($this->get_plugin_name(), $this->get_version());
 
 		/*
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		*/
 
-		$this->loader->add_action( 'add_attachment', $plugin_admin, 'save_attachment_alt', 99 );
-		$this->loader->add_action( 'wp_ajax_save-attachment', $plugin_admin, 'wp_ajax_save_attachment_alt', 10 );
+		$this->loader->add_action('add_attachment', $plugin_admin, 'save_attachment_alt', 99);
+		$this->loader->add_action('wp_ajax_save-attachment', $plugin_admin, 'wp_ajax_save_attachment_alt', 10);
 	}
 
 	/**
@@ -155,10 +153,10 @@ class Wonder_Alt {
 	 * @access private
 	 */
 	private function define_public_hooks() {
-		$plugin_public = new Wonder_Alt_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Wonder_Alt_Public($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
 	}
 
 	/**

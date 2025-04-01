@@ -1,14 +1,12 @@
 <?php
+
 /**
  * The public-facing functionality of the plugin.
  *
  * @link https://wonderjarcreative.com
- * 
- * @since 0.1.0
- *
+ * @since 1.0.0
  * @package Wonder_Alt
- * 
- * @subpackage Wonder_Alt/public
+ * @subpackage Wonder_Alt\Public
  */
 
 /**
@@ -43,10 +41,9 @@ class Wonder_Alt_Public {
 	 * @param string $plugin_name The name of the plugin.
 	 * @param string $version     The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -66,7 +63,7 @@ class Wonder_Alt_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wonder-alt-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wonder-alt-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -88,6 +85,6 @@ class Wonder_Alt_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wonder-alt-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wonder-alt-public.js', array('jquery'), $this->version, false);
 	}
 }

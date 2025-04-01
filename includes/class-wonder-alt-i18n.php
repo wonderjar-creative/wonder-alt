@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Define the internationalization functionality
  *
@@ -6,12 +7,9 @@
  * so that it is ready for translation.
  *
  * @link https://wonderjarcreative.com
- * 
- * @since 0.1.0
- *
+ * @since 1.0.0
  * @package Wonder_Alt
- * 
- * @subpackage Wonder_Alt/includes
+ * @subpackage Wonder_Alt\Includes
  */
 
 /**
@@ -29,7 +27,7 @@ class Wonder_Alt_i18n {
 		load_plugin_textdomain(
 			'wonder-alt',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
 	}
 }

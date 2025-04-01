@@ -1,114 +1,85 @@
-=== Plugin Name ===
-Contributors: edigermatthew
-Donate link: https://wonderjarcreative.com/
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 1.4.0
-License: GPLv2 or later
+# Wonder Alt
+
+Contributors: wonderjarcreative  
+Donate link: https://example.com/  
+Tags: wordpress, animations, css, frontend  
+Requires at least: 5.0  
+Tested up to: 6.2  
+Stable tag: 1.4.1  
+License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+**Wonder Alt** is a WordPress plugin that automatically adds alt text to images, improving accessibility and SEO for your website.
 
-== Description ==
+## Features
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+- Automatically generates alt text for images based on their titles.
+- Enhances website accessibility.
+- Improves SEO by ensuring all images have descriptive alt text.
+- Lightweight and easy to use.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+## Installation
 
-A few notes about the sections above:
+1. Download the plugin or clone the repository.
+2. Upload the `wonder-alt` folder to the `/wp-content/plugins/` directory.
+3. Activate the plugin through the 'Plugins' menu in WordPress.
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
-*   "Tags" is a comma separated list of tags that apply to the plugin
-*   "Requires at least" is the lowest version that the plugin will work on
-*   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
-higher versions... this is just the highest one you've verified.
-*   Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use `/trunk/` for
-stable.
+## Usage
 
-    Note that the `readme.txt` of the stable tag is the one that is considered the defining one for the plugin, so
-if the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used
-for displaying information about the plugin.  In this situation, the only thing considered from the trunk `readme.txt`
-is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk `readme.txt` to reflect changes in
-your in-development version, without having that information incorrectly disclosed about the current stable version
-that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+Once activated, Wonder Alt will automatically add alt text to images without any additional configuration. You can upload images as usual, and the plugin will handle the rest.
 
-    If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
-you put the stable version, in order to eliminate any doubt.
+## Frequently Asked Questions
 
-== Installation ==
+= Does this plugin overwrite existing alt text? =
 
-This section describes how to install the plugin and get it working.
+No, Wonder Alt only adds alt text to images that do not already have it.
 
-e.g.
+= Can I customize the generated alt text? =
 
-1. Upload `wonder-alt.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+Currently, the plugin generates alt text based on the image title. Future updates may include customization options.
 
-== Frequently Asked Questions ==
+## Changelog
 
-= A question that someone might have =
+= 1.4.0 =
 
-An answer to that question.
+- Added support for AJAX-based alt text saving.
+- Improved alt text generation logic.
 
-= What about foo bar? =
+= 1.3.0 =
 
-Answer to foo bar dilemma.
+- Introduced utility methods for alt text generation.
+- Enhanced compatibility with WordPress core.
 
-== Screenshots ==
+= 1.0.0 =
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+- Initial release.
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request on GitHub (https://github.com/your-repo-url).
+
+## License
+
+This plugin is licensed under the GNU General Public License v2.0 (http://www.gnu.org/licenses/gpl-2.0.html) or later.
+
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+All notable changes to this project will be documented in this file.
 
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
+This project adheres to Semantic Versioning (https://semver.org/spec/v2.0.0.html).  
+This changelog format is based on Keep a Changelog (https://keepachangelog.com/en/1.0.0/).
 
-== Upgrade Notice ==
+## [1.4.1] - 2025-04-01
 
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
+= Added =
 
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+- Added `CHANGELOG.md` for plugin changes.
+- Added `README.md` for plugin information.
+- Added `readmeConfig.json` for generating the `README.txt`.
 
-== Arbitrary section ==
+## [1.4.0] - 2024-09-15
 
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
+= Added =
 
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`
+- Initial change tracking.

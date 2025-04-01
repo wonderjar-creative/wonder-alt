@@ -1,14 +1,12 @@
 <?php
+
 /**
  * Fired during plugin deactivation
  *
  * @link https://wonderjarcreative.com
- * 
- * @since 0.1.0
- *
+ * @since 1.0.0
  * @package Wonder_Alt
- * 
- * @subpackage Wonder_Alt/includes
+ * @subpackage Wonder_Alt\Includes
  */
 
 /**
@@ -24,6 +22,5 @@ class Wonder_Alt_Deactivator {
 	 * Long Description.
 	 */
 	public static function deactivate() {
-
 	}
 }

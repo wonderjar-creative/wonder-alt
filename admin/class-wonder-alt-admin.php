@@ -1,14 +1,12 @@
 <?php
+
 /**
  * The admin-specific functionality of the plugin.
  *
  * @link https://wonderjarcreative.com
- * 
- * @since 0.1.0
- *
+ * @since 1.0.0
  * @package Wonder_Alt
- * 
- * @subpackage Wonder_Alt/admin
+ * @subpackage Wonder_Alt\Admin
  */
 
 /**
@@ -43,7 +41,7 @@ class Wonder_Alt_Admin {
 	 * @param string $plugin_name The name of this plugin.
 	 * @param string $version     The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
@@ -65,7 +63,7 @@ class Wonder_Alt_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wonder-alt-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/wonder-alt-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -84,7 +82,7 @@ class Wonder_Alt_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wonder-alt-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/wonder-alt-admin.js', array('jquery'), $this->version, false);
 	}
 
 	/**
@@ -98,19 +96,18 @@ class Wonder_Alt_Admin {
 	 * @param WP_POST $post    The post object.
 	 * @param bool 	  $update  Whether this is an existing post being updated.
 	 */
-	public function save_attachment_alt( $post_id ) {
-		$has_alt = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
+	public function save_attachment_alt($post_id) {
+		$has_alt = get_post_meta($post_id, '_wp_attachment_image_alt', true);
 
-		if ( empty( $has_alt ) || ! $has_alt ) {
-			$alt_text = $this->generate_alt_text_from_title( get_the_title( $post_id ) );
+		if (empty($has_alt) || ! $has_alt) {
+			$alt_text = $this->generate_alt_text_from_title(get_the_title($post_id));
 
-			if ( ! empty( $alt_text ) ) {
-				update_post_meta( $post_id, '_wp_attachment_image_alt', $alt_text );
+			if (! empty($alt_text)) {
+				update_post_meta($post_id, '_wp_attachment_image_alt', $alt_text);
 			}
 		}
-
 	}
-	
+
 	/**
 	 * WP ajax save attachment alt.
 	 * 
@@ -121,32 +118,32 @@ class Wonder_Alt_Admin {
 	 * 
 	 * @since 1.3.0
 	 */
-	public function wp_ajax_save_attachment_alt() {		
-		if ( ! isset( $_REQUEST['id'] ) || ! isset( $_REQUEST['changes'] ) ) {
+	public function wp_ajax_save_attachment_alt() {
+		if (! isset($_REQUEST['id']) || ! isset($_REQUEST['changes'])) {
 			wp_send_json_error();
 		}
-	
-		$id = absint( $_REQUEST['id'] );
-		if ( ! $id ) {
+
+		$id = absint($_REQUEST['id']);
+		if (! $id) {
 			wp_send_json_error();
 		}
-	
-		check_ajax_referer( 'update-post_' . $id, 'nonce' );
-	
-		if ( ! current_user_can( 'edit_post', $id ) ) {
+
+		check_ajax_referer('update-post_' . $id, 'nonce');
+
+		if (! current_user_can('edit_post', $id)) {
 			wp_send_json_error();
 		}
-	
+
 		$changes = $_REQUEST['changes'];
-		$post    = get_post( $id, ARRAY_A );
-	
-		if ( 'attachment' !== $post['post_type'] ) {
+		$post    = get_post($id, ARRAY_A);
+
+		if ('attachment' !== $post['post_type']) {
 			wp_send_json_error();
 		}
 
 		// If no alt is coming in the changes.
-		if ( ! isset( $changes['alt'] ) || empty( $changes['alt'] ) ) {
-			$this->update_alt_meta( $id, $post['post_title'] );
+		if (! isset($changes['alt']) || empty($changes['alt'])) {
+			$this->update_alt_meta($id, $post['post_title']);
 		}
 
 		wp_send_json_success();
@@ -162,15 +159,15 @@ class Wonder_Alt_Admin {
 	 * @param int 	 $post_id 	 The ID of the post.
 	 * @param string $post_title The title of the post.
 	 */
-	private function update_alt_meta( $post_id, $post_title ) {
-		$has_alt = get_post_meta( $post_id, '_wp_attachment_image_alt', true );
+	private function update_alt_meta($post_id, $post_title) {
+		$has_alt = get_post_meta($post_id, '_wp_attachment_image_alt', true);
 
 		// Only on empty alts.
-		if ( empty( $has_alt ) || false === $has_alt ) {
-			$alt_text = $this->generate_alt_text_from_title( $post_title );
+		if (empty($has_alt) || false === $has_alt) {
+			$alt_text = $this->generate_alt_text_from_title($post_title);
 
-			if ( ! empty( $alt_text ) ) {
-				update_post_meta( $post_id, '_wp_attachment_image_alt', $alt_text );
+			if (! empty($alt_text)) {
+				update_post_meta($post_id, '_wp_attachment_image_alt', $alt_text);
 			}
 		}
 	}
@@ -188,11 +185,11 @@ class Wonder_Alt_Admin {
 	 * 
 	 * @return string The alt text generated.
 	 */
-	private function generate_alt_text_from_title( $title ) {
-		$alt_text = ucwords( str_replace( '_', ' ', str_replace( '-', ' ', $title ) ) );
+	private function generate_alt_text_from_title($title) {
+		$alt_text = ucwords(str_replace('_', ' ', str_replace('-', ' ', $title)));
 
-		if ( ! empty( $alt_text ) ) {
-			return wp_slash( wp_strip_all_tags( $alt_text, true ) );
+		if (! empty($alt_text)) {
+			return wp_slash(wp_strip_all_tags($alt_text, true));
 		}
 
 		return;
